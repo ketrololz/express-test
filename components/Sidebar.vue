@@ -100,13 +100,15 @@ const navLinks = computed(() => {
   return menu.value.map((item) => {
     console.log(isCollapsed.value);
     let itemClass = '';
+    let iconClass = item.icon;
     if (isCollapsed.value) {
       itemClass = 'flex justify-center';
+      iconClass = `${item.icon} size-6!`;
     };
     
     return {
       label: item.post_title,
-      icon: item.icon,
+      icon: iconClass,
       to: `${item.url}`,
       class: itemClass,
     };
