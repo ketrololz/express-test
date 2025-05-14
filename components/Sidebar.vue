@@ -103,7 +103,7 @@ const navLinks = computed(() => {
     let iconClass = item.icon;
     if (isCollapsed.value) {
       itemClass = 'flex justify-center';
-      iconClass = `${item.icon} size-6!`;
+      iconClass = `${item.icon} !size-6`;
     };
     
     return {
