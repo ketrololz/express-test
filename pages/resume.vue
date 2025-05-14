@@ -1,5 +1,6 @@
 <template>
   <ResumeDownload :items="buttons"></ResumeDownload>
+  <ProfileInfo></ProfileInfo>
 </template>
 
 <script setup lang="ts">
