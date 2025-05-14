@@ -11,6 +11,9 @@
         <UButton color="primary" to="https://example.com">
           Visit WordPress
         </UButton>
+        <UButton color="secondary" to="/resume" class="ml-2">
+          Resume
+        </UButton>
       </template>
     </UCard>
     
