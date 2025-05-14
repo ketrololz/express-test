@@ -1,6 +1,8 @@
 <template>
-  <ResumeDownload :items="buttons"></ResumeDownload>
-  <ProfileInfo></ProfileInfo>
+  <div class="flex flex-col gap-y-4">
+    <ResumeDownload :items="buttons"></ResumeDownload>
+    <ProfileInfo></ProfileInfo>
+  </div>
 </template>
 
 <script setup lang="ts">
