@@ -11,8 +11,14 @@
       <a :href="`mailto:${ info?.email }`" class="flex items-center gap-x-1.5"><UIcon name="i-lucide-mail" /> {{ info?.email || "не указан" }}</a>
     </div>
   </div>
-  <div class="flex gap-4">
+  <div class="flex flex-col gap-4">
     <p>Дела:</p>
+    <div class="flex gap-x-2">
+      <UButton @click="switchInterviewStatus" :color="interviewStatus ? 'success' : 'error'" class="max-w-40">{{ interviewStatusText }}</UButton>
+      <UButton class="max-w-40">Создать видеозвонок</UButton>
+      <UButton class="max-w-40">Запланировать событие</UButton>
+      <UButton class="max-w-30">Отправить запрос</UButton>
+    </div>
   </div>
 </template>
 
@@ -20,6 +26,10 @@
 import type { ProfileInfo } from './types/profile-info.ts'
 const info = ref<ProfileInfo>()
 const avatar = ref('')
+const interviewStatus = ref(false)
+const interviewStatusText = computed(() => {
+  return interviewStatus.value ? 'Собеседование запланировано' : 'Собеседование не запланировано'
+})
 
 onMounted(async () => {
   try {
@@ -41,5 +51,9 @@ onMounted(async () => {
 
 function handleAvatarError() {
   avatar.value = '/avatar.png';
+}
+
+function switchInterviewStatus() {
+  interviewStatus.value = !interviewStatus.value;
 }
 </script>
