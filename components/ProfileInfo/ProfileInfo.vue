@@ -35,7 +35,7 @@
   </div>
   <div class="flex flex-col gap-2">
     <p>Статус рассмотрения:</p>
-    <div class="flex gap-2 max-w-300 flex-wrap w-full">
+    <div class="flex gap-2 max-w-260 flex-wrap w-full">
       <StatusButton v-for="item of statusItems" :key="item.id" :text="item.text"/>
     </div>
   </div>
@@ -51,7 +51,7 @@
     <p>Сопроводительное письмо</p>
   </div>
   <div class="flex flex-col gap-2">
-    <UContainer class="flex items-center gap-x-4 border-1 rounded-md bg-zinc-800">
+    <UContainer class="flex items-center gap-x-4 border-1 rounded-md bg-zinc-800 max-w-260 mx-0">
       <UIcon name="i-lucide-info" size="40" />
       <div>
         <p>Файлы портфолио:</p>
