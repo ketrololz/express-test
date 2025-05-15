@@ -1,7 +1,8 @@
 <template>
   <div class="flex">
     <UButton
-      class="rounded-l-md rounded-r-none px-6"
+      class="rounded-l-md rounded-r-none px-6 h-11"
+      size="xs"
       :variant="isActive ? 'solid' : 'outline'"
       color="neutral"
       @click="toggleDisable"

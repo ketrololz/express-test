@@ -35,8 +35,8 @@
   </div>
   <div class="flex flex-col gap-2">
     <p>Статус рассмотрения:</p>
-    <div class="flex gap-x-2">
-      <StatusButton :text="'Новое'" color="success"/>
+    <div class="flex gap-2 max-w-300 flex-wrap w-full">
+      <StatusButton v-for="item of statusItems" :key="item.id" :text="item.text"/>
     </div>
   </div>
 </template>
@@ -69,6 +69,54 @@ onMounted(async () => {
     console.error("Error fetching user:", err);
   }
 });
+
+const id = ref(0)
+const statusItems = [
+  {
+    id: id.value++,
+    text: 'Новое',
+  },
+  {
+    id: id.value++,
+    text: 'Просмотрено',
+  },
+  {
+    id: id.value++,
+    text: 'Отправлено приглашение',
+  },
+  {
+    id: id.value++,
+    text: 'Назначено собеседование',
+  },
+  {
+    id: id.value++,
+    text: 'Не дошел',
+  },
+  {
+    id: id.value++,
+    text: 'Проведено собеседование',
+  },
+  {
+    id: id.value++,
+    text: 'Ожидание ответа соискателя',
+  },
+  {
+    id: id.value++,
+    text: 'Принятие решения',
+  },
+  {
+    id: id.value++,
+    text: 'Принят',
+  },
+  {
+    id: id.value++,
+    text: 'Отклонено/Отказ',
+  },
+  {
+    id: id.value++,
+    text: 'Архивировано',
+  },
+];
 
 function handleAvatarError() {
   avatar.value = "/avatar.png";
