@@ -1,35 +1,56 @@
 <template>
   <div class="flex gap-4">
-    <img :src="avatar" @error="handleAvatarError" class="w-45 h-45 rounded-md"/>
+    <img
+      :src="avatar"
+      @error="handleAvatarError"
+      class="w-45 h-45 rounded-md"
+    />
     <div>
       <h2 class="text-xl font-bold">{{ info?.name }}</h2>
       <p>Кандидат на вакансию: Frontend-разработчик</p>
-      <p>{{ info?.status === 'viewed' ? "Просмотрено" : "Не просмотрено" }}</p>
+      <p>{{ info?.status === "viewed" ? "Просмотрено" : "Не просмотрено" }}</p>
       <p>Дата отклика: {{ info?.date }}</p>
       <p>Возраст: {{ info?.age || "не указан" }}</p>
-      <a :href="`tel:+${ info?.phone }`" class="flex items-center gap-x-1.5"><UIcon name="i-lucide-phone" /> {{ info?.phone || "не указан" }}</a>
-      <a :href="`mailto:${ info?.email }`" class="flex items-center gap-x-1.5"><UIcon name="i-lucide-mail" /> {{ info?.email || "не указан" }}</a>
+      <a :href="`tel:+${info?.phone}`" class="flex items-center gap-x-1.5"
+        ><UIcon name="i-lucide-phone" /> {{ info?.phone || "не указан" }}</a
+      >
+      <a :href="`mailto:${info?.email}`" class="flex items-center gap-x-1.5"
+        ><UIcon name="i-lucide-mail" /> {{ info?.email || "не указан" }}</a
+      >
     </div>
   </div>
-  <div class="flex flex-col gap-4">
+  <div class="flex flex-col gap-2">
     <p>Дела:</p>
     <div class="flex gap-x-2">
-      <UButton @click="switchInterviewStatus" :color="interviewStatus ? 'success' : 'error'" class="max-w-40">{{ interviewStatusText }}</UButton>
+      <UButton
+        @click="switchInterviewStatus"
+        :color="interviewStatus ? 'success' : 'error'"
+        class="max-w-40"
+        >{{ interviewStatusText }}</UButton
+      >
       <UButton class="max-w-40">Создать видеозвонок</UButton>
       <UButton class="max-w-40">Запланировать событие</UButton>
       <UButton class="max-w-30">Отправить запрос</UButton>
     </div>
   </div>
+  <div class="flex flex-col gap-2">
+    <p>Статус рассмотрения:</p>
+    <div class="flex gap-x-2">
+      <StatusButton :text="'Новое'" color="success"/>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import type { ProfileInfo } from './types/profile-info.ts'
-const info = ref<ProfileInfo>()
-const avatar = ref('')
-const interviewStatus = ref(false)
+import type { ProfileInfo } from "./types/profile-info.ts";
+const info = ref<ProfileInfo>();
+const avatar = ref("");
+const interviewStatus = ref(false);
 const interviewStatusText = computed(() => {
-  return interviewStatus.value ? 'Собеседование запланировано' : 'Собеседование не запланировано'
-})
+  return interviewStatus.value
+    ? "Собеседование запланировано"
+    : "Собеседование не запланировано";
+});
 
 onMounted(async () => {
   try {
@@ -37,20 +58,20 @@ onMounted(async () => {
     if (!response.ok) {
       throw new Error("Failed to fetch user data");
     }
-    const data = await response.json()
+    const data = await response.json();
 
     if (data.photo) {
-      avatar.value = data.photo
+      avatar.value = data.photo;
     }
 
-    info.value = data
+    info.value = data;
   } catch (err) {
     console.error("Error fetching user:", err);
   }
 });
 
 function handleAvatarError() {
-  avatar.value = '/avatar.png';
+  avatar.value = "/avatar.png";
 }
 
 function switchInterviewStatus() {
