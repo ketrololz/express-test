@@ -39,6 +39,26 @@
       <StatusButton v-for="item of statusItems" :key="item.id" :text="item.text"/>
     </div>
   </div>
+  <div class="flex flex-col gap-2">
+    <h3 class="text-xl font-bold text-violet-400">Pikabu отклик</h3>
+    <p>Отклик с портала Pikabu</p>
+  </div>
+  <div class="flex flex-col gap-2">
+    <p>Дата рождения: {{ info?.birth_date }}</p>
+    <p>Город: {{ info?.town }}</p>
+  </div>
+  <div class="flex flex-col gap-2">
+    <p>Сопроводительное письмо</p>
+  </div>
+  <div class="flex flex-col gap-2">
+    <UContainer class="flex items-center gap-x-4 border-1 rounded-md bg-zinc-800">
+      <UIcon name="i-lucide-info" size="40" />
+      <div>
+        <p>Файлы портфолио:</p>
+        <UButton variant="link" class="p-0 text-lg">Резюме</UButton>
+      </div>
+    </UContainer>
+  </div>
 </template>
 
 <script setup lang="ts">
